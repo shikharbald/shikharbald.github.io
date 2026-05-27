@@ -262,8 +262,10 @@ h2 {
 .coursework {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem 2rem;
+  gap: 0.75rem 1.5rem;
   margin-top: 0.75rem;
+  margin-left: calc(-140px - 2rem);
+  width: calc(100% + 140px + 2rem);
 }
 .coursework-heading {
   font-family: var(--mono);
@@ -275,7 +277,7 @@ h2 {
 }
 .coursework ul { list-style: none; padding: 0; }
 .coursework li {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--muted);
   line-height: 1.6;
 }
@@ -427,7 +429,7 @@ footer a:hover { color: var(--text); }
   nav { padding: 0 1.25rem; }
   main { padding: 0 1.25rem; }
   .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
-  .coursework { grid-template-columns: 1fr; }
+  .coursework { grid-template-columns: 1fr; margin-left: 0; width: 100%; }
   .timeline-date { margin-bottom: 0.25rem; }
   .post-item { grid-template-columns: 1fr; gap: 0.25rem; }
   .post-date { margin-bottom: 0.25rem; }
