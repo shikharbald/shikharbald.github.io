@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name — Engineer &amp; Builder</title>
-  <meta name="description" content="Software engineer. I build things and occasionally write about them." />
+  <title>Shikhar Nandi — Software Engineer</title>
+  <meta name="description" content="Software engineer building distributed systems and developer tooling." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <a href="/" class="nav-logo">Your Name</a>
+    <a href="/" class="nav-logo">Shikhar Nandi</a>
     <ul class="nav-links">
       <li><a href="/" class="active">About</a></li>
       <li><a href="blog.html">Blog</a></li>
@@ -25,14 +25,15 @@
   <!-- HERO -->
   <section class="hero">
     <p class="hero-eyebrow">Software Engineer</p>
-    <h1>I build things for the web<em> — and beyond.</em></h1>
+    <h1>I build things that scale<em> — fast.</em></h1>
     <p class="hero-sub">
-      Currently working on [what you're working on]. Previously at [Company A] and [Company B].
-      Interested in distributed systems, developer tooling, and making computers do useful things.
+      Currently at Stripe. Previously built real-time recommendation systems at EA serving 5M+ players,
+      and re-architected AWS infrastructure at Capital One. Based in Toronto.
     </p>
     <div class="hero-links">
-      <a href="blog.html" class="btn btn-primary">Read the blog →</a>
-      <a href="mailto:you@email.com" class="btn btn-ghost">Get in touch</a>
+      <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">View Resume ↗</a>
+      <a href="blog.html" class="btn btn-ghost">Read the blog →</a>
+      <a href="mailto:shikharndaa@gmail.com" class="btn btn-ghost">Get in touch</a>
     </div>
   </section>
 
@@ -42,51 +43,69 @@
     <div class="timeline">
 
       <div class="timeline-item">
-        <div class="timeline-date">2023 — now</div>
+        <div class="timeline-date">2026 — now</div>
         <div>
-          <div class="timeline-role">Senior Software Engineer</div>
-          <div class="timeline-company">Company Name</div>
+          <div class="timeline-header">
+            <img src="https://logo.clearbit.com/stripe.com" alt="Stripe" class="company-logo" />
+            <div>
+              <div class="timeline-role">Software Engineer II</div>
+              <div class="timeline-company">Stripe</div>
+            </div>
+          </div>
           <p class="timeline-desc">
-            Brief description of what you did. What you built, what impact it had.
-            Keep it to 2–3 sentences. Focus on outcomes, not just tasks.
+            Working on bank connectivity infrastructure.
           </p>
           <div class="timeline-tags">
-            <span class="tag">TypeScript</span>
-            <span class="tag">React</span>
-            <span class="tag">PostgreSQL</span>
+            <span class="tag">Go</span>
+            <span class="tag">Python</span>
           </div>
         </div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-date">2021 — 2023</div>
+        <div class="timeline-date">2025 — 2026</div>
         <div>
-          <div class="timeline-role">Software Engineer</div>
-          <div class="timeline-company">Previous Company</div>
+          <div class="timeline-header">
+            <img src="https://logo.clearbit.com/ea.com" alt="Electronic Arts" class="company-logo" />
+            <div>
+              <div class="timeline-role">Software Engineer II</div>
+              <div class="timeline-company">Electronic Arts (EA)</div>
+            </div>
+          </div>
           <p class="timeline-desc">
-            Another brief description. What problems did you solve? What did you ship?
-            Quantify if you can — "reduced latency by 40%", "served 10M users", etc.
+            Built the Recently Met friends recommendation pipeline in Go, serving 5M+ active players across all EA titles.
+            Cut processing time from 10+ min to 10 sec, boosted engagement 20%, and reduced new game title onboarding from 10 days to 4 hours.
+          </p>
+          <div class="timeline-tags">
+            <span class="tag">Go</span>
+            <span class="tag">Python</span>
+            <span class="tag">Redis</span>
+            <span class="tag">StarRocksDB</span>
+            <span class="tag">Kubernetes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2021 — 2024</div>
+        <div>
+          <div class="timeline-header">
+            <img src="https://logo.clearbit.com/capitalone.com" alt="Capital One" class="company-logo" />
+            <div>
+              <div class="timeline-role">Senior Software Engineer</div>
+              <div class="timeline-company">Capital One</div>
+            </div>
+          </div>
+          <p class="timeline-desc">
+            Re-architected APIs and microservices on AWS Lambda serving 60K+ customers/month, cutting response times from 8s to 0.7s and runtime costs by 80%.
+            Shipped features across Python, TypeScript, and React touching payments, compliance, and customer acquisition.
           </p>
           <div class="timeline-tags">
             <span class="tag">Python</span>
-            <span class="tag">Kubernetes</span>
-            <span class="tag">Go</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-date">2019 — 2021</div>
-        <div>
-          <div class="timeline-role">Software Engineer</div>
-          <div class="timeline-company">Another Company</div>
-          <p class="timeline-desc">
-            Earlier role. Even a single strong sentence is fine here — "Built the
-            initial version of X from scratch, which now handles Y."
-          </p>
-          <div class="timeline-tags">
-            <span class="tag">Node.js</span>
-            <span class="tag">AWS</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">AWS Lambda</span>
+            <span class="tag">React</span>
+            <span class="tag">SQS</span>
           </div>
         </div>
       </div>
@@ -99,27 +118,11 @@
     <p class="section-label">// recent writing</p>
     <div class="post-grid">
 
-      <a href="blog/my-first-post.html" class="post-item">
+      <a href="my-first-post.html" class="post-item">
         <div class="post-date">May 2025</div>
         <div>
           <div class="post-title">How I think about system design interviews</div>
           <div class="post-excerpt">The framework I wish I'd had going in — structure, trade-offs, and what interviewers actually care about.</div>
-        </div>
-      </a>
-
-      <a href="blog/post-template.html" class="post-item">
-        <div class="post-date">Apr 2025</div>
-        <div>
-          <div class="post-title">Building a side project in a weekend: what I learned</div>
-          <div class="post-excerpt">Constraints force decisions. Here's what I shipped, what I cut, and what I'd do differently.</div>
-        </div>
-      </a>
-
-      <a href="blog/post-template.html" class="post-item">
-        <div class="post-date">Mar 2025</div>
-        <div>
-          <div class="post-title">Notes on distributed tracing</div>
-          <div class="post-excerpt">Everything I've picked up after a year of actually using OpenTelemetry in production.</div>
         </div>
       </a>
 
@@ -133,13 +136,13 @@
 </main>
 
 <footer>
-  <span>© 2025 Your Name</span>
+  <span>© 2026 Shikhar Nandi</span>
   &nbsp;·&nbsp;
   <a href="https://github.com/shikharbald" target="_blank" rel="noopener">github</a>
   &nbsp;·&nbsp;
-  <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin</a>
+  <a href="https://linkedin.com/in/shikharn14" target="_blank" rel="noopener">linkedin</a>
   &nbsp;·&nbsp;
-  <a href="mailto:you@email.com">email</a>
+  <a href="mailto:shikharndaa@gmail.com">email</a>
 </footer>
 
 </body>
