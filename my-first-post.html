@@ -1,28 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
+<script>
+  if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+  }
+</script>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>How I think about system design interviews — Your Name</title>
+  <title>How I think about system design interviews — Shikhar Nandi</title>
   <meta name="description" content="The framework I wish I'd had going in — structure, trade-offs, and what interviewers actually care about." />
-  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <a href="/" class="nav-logo">Your Name</a>
+    <a href="/" class="nav-logo">Shikhar Nandi</a>
     <ul class="nav-links">
       <li><a href="/">About</a></li>
-      <li><a href="../blog.html" class="active">Blog</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
       <li><a href="https://github.com/shikharbald" target="_blank" rel="noopener">GitHub ↗</a></li>
     </ul>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀</button>
   </div>
 </nav>
+<script>
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    document.querySelector('.theme-toggle').textContent = isDark ? '☾' : '☀';
+  }
+  if (document.documentElement.classList.contains('dark')) {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.theme-toggle').textContent = '☾';
+    });
+  }
+</script>
 
 <main>
 
-  <a href="../blog.html" class="back-link">← all posts</a>
+  <a href="blog.html" class="back-link">← all posts</a>
 
   <header class="post-header">
     <div class="post-meta">
@@ -121,13 +139,13 @@ Peak (assume 3x): ~7,000 RPS</code></pre>
 </main>
 
 <footer>
-  <span>© 2025 Your Name</span>
+  <span>© 2026 Shikhar Nandi</span>
   &nbsp;·&nbsp;
   <a href="https://github.com/shikharbald" target="_blank" rel="noopener">github</a>
   &nbsp;·&nbsp;
-  <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin</a>
+  <a href="https://linkedin.com/in/shikharn14" target="_blank" rel="noopener">linkedin</a>
   &nbsp;·&nbsp;
-  <a href="mailto:you@email.com">email</a>
+  <a href="mailto:shikharndaa@gmail.com">email</a>
 </footer>
 
 </body>
