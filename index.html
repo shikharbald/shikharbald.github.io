@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="">
-<script>
-  if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    document.documentElement.classList.add('dark');
-  }
-</script>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shikhar Nandi — Software Engineer</title>
   <meta name="description" content="Software engineer building distributed systems and developer tooling." />
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -22,21 +22,12 @@
       <li><a href="blog.html">Blog</a></li>
       <li><a href="https://github.com/shikharbald" target="_blank" rel="noopener">GitHub ↗</a></li>
     </ul>
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">☀</button>
+    <label class="theme-switch" aria-label="Toggle dark mode">
+      <input type="checkbox" id="theme-checkbox" onchange="toggleTheme(this)" />
+      <span class="slider"></span>
+    </label>
   </div>
 </nav>
-<script>
-  function toggleTheme() {
-    const isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    document.querySelector('.theme-toggle').textContent = isDark ? '☾' : '☀';
-  }
-  if (document.documentElement.classList.contains('dark')) {
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('.theme-toggle').textContent = '☾';
-    });
-  }
-</script>
 
 <main>
 
@@ -185,6 +176,15 @@
   &nbsp;·&nbsp;
   <a href="mailto:shikharndaa@gmail.com">email</a>
 </footer>
+
+<script>
+  function toggleTheme(checkbox) {
+    const isDark = checkbox.checked;
+    document.documentElement.classList.toggle('dark', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+  document.getElementById('theme-checkbox').checked = document.documentElement.classList.contains('dark');
+</script>
 
 </body>
 </html>
