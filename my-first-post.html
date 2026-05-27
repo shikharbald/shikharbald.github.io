@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How I think about system design interviews — Your Name</title>
+  <meta name="description" content="The framework I wish I'd had going in — structure, trade-offs, and what interviewers actually care about." />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Your Name</a>
+    <ul class="nav-links">
+      <li><a href="/">About</a></li>
+      <li><a href="../blog.html" class="active">Blog</a></li>
+      <li><a href="https://github.com/shikharbald" target="_blank" rel="noopener">GitHub ↗</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <a href="../blog.html" class="back-link">← all posts</a>
+
+  <header class="post-header">
+    <div class="post-meta">
+      <span>May 14, 2025</span>
+      <span>7 min read</span>
+    </div>
+    <h1>How I think about system design interviews</h1>
+    <p class="post-lede">
+      The framework I wish I'd had going in — structure, trade-offs, and what interviewers actually care about.
+    </p>
+  </header>
+
+  <hr class="divider" />
+
+  <article class="post-body">
+
+    <p>
+      I bombed my first few system design interviews. Not because I didn't know the material — I'd read all the right blog posts, studied distributed systems, could talk about CAP theorem. But I kept losing the thread. I'd go deep on caching before even agreeing on what the system needed to do. Interviewers would look politely glazed over.
+    </p>
+
+    <p>
+      After a lot of reps, I landed on a structure that works for me. It's not magic — it's basically just a way to avoid the common failure modes while giving you room to show genuine depth.
+    </p>
+
+    <h2>The actual failure modes</h2>
+
+    <p>
+      Before getting into structure, it helps to understand what goes wrong. In my experience, there are three main failure patterns:
+    </p>
+
+    <ul>
+      <li><strong>Jumping to solutions</strong> — starting to design a database schema before understanding what scale you're building for</li>
+      <li><strong>Breadth without depth</strong> — listing every component you've ever heard of without explaining why any of them are there</li>
+      <li><strong>Avoiding trade-offs</strong> — treating every design decision as obviously correct rather than acknowledging what you're giving up</li>
+    </ul>
+
+    <p>
+      The framework below is basically just a way to avoid each of these.
+    </p>
+
+    <h2>The framework</h2>
+
+    <h3>1. Clarify requirements (5 minutes)</h3>
+
+    <p>
+      Don't touch the whiteboard yet. Ask questions. What does the system actually need to do? Who are the users? What's the scale — 1,000 users or 100 million? Is this read-heavy or write-heavy? What are the latency requirements?
+    </p>
+
+    <p>
+      Write down the answers visibly. This accomplishes two things: it forces you to actually understand the problem before solving it, and it shows the interviewer you can gather requirements — which is, y'know, a large part of the actual job.
+    </p>
+
+    <h3>2. Estimate scale, then do math</h3>
+
+    <p>
+      Once you have requirements, do rough napkin math. How many requests per second? How much data are you storing? These numbers will drive your architecture — there's no point discussing a write-ahead log if you're building for 100 users.
+    </p>
+
+    <pre><code>Daily active users: 10M
+Average requests per user per day: 20
+Requests per second: 10M × 20 / 86,400 ≈ 2,300 RPS
+Peak (assume 3x): ~7,000 RPS</code></pre>
+
+    <p>
+      The exact numbers don't matter. The exercise of thinking through them does.
+    </p>
+
+    <h3>3. Draw the high-level design</h3>
+
+    <p>
+      Now you can touch the whiteboard. Start simple: client, load balancer, app servers, database. Walk through a request end-to-end. Get alignment before going deeper.
+    </p>
+
+    <h3>4. Dive deep where it matters</h3>
+
+    <p>
+      Pick the interesting parts — usually whatever's hardest at the scale you estimated — and go deep. This is where you show real knowledge. Don't try to go deep on everything; you'll run out of time and it'll feel scattered.
+    </p>
+
+    <h2>What interviewers are actually evaluating</h2>
+
+    <p>
+      In my experience, the best interviewers aren't checking whether you arrived at the "correct" architecture. They're watching how you think. They want to see you handle ambiguity, reason about trade-offs, and communicate clearly. A candidate who says "I'd use Kafka here because we need to handle bursty writes and decouple the producer from the consumer, but the trade-off is operational complexity" is going to score better than one who says "Kafka, obviously" — even if both end up at the same design.
+    </p>
+
+    <blockquote>
+      Design interviews are less about the destination and more about whether you'd be a good thinking partner on the journey.
+    </blockquote>
+
+    <p>
+      That's the real unlock: stop trying to perform knowledge, and start actually thinking through the problem in the room with your interviewer.
+    </p>
+
+  </article>
+
+</main>
+
+<footer>
+  <span>© 2025 Your Name</span>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/shikharbald" target="_blank" rel="noopener">github</a>
+  &nbsp;·&nbsp;
+  <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin</a>
+  &nbsp;·&nbsp;
+  <a href="mailto:you@email.com">email</a>
+</footer>
+
+</body>
+</html>
