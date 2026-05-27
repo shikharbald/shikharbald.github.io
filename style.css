@@ -150,17 +150,12 @@ h2 {
 
 /* ── COMPANY LOGO ── */
 .company-logo {
-  flex: 0 0 18px;
-  width: 18px;
-  height: 18px;
-  border-radius: 3px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--mono);
-  font-size: 0.5rem;
-  font-weight: 700;
-  line-height: 1;
+  display: block;
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+  opacity: 0.85;
 }
 
 /* ── EXPERIENCE TIMELINE ── */
@@ -188,12 +183,6 @@ h2 {
   margin-bottom: 0.2rem;
 }
 .timeline-company {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--accent);
-  font-size: 0.875rem;
-  font-weight: 400;
   margin-bottom: 0.6rem;
 }
 .timeline-desc {
