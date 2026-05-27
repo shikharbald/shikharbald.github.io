@@ -149,13 +149,29 @@ h2 {
 }
 
 /* ── COMPANY LOGO ── */
+.timeline-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
 .company-logo {
-  display: block;
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
   object-fit: cover;
-  margin-bottom: 0.6rem;
+}
+.timeline-header-text .timeline-company {
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 0.1rem;
+}
+.timeline-header-text .timeline-role {
+  font-size: 0.875rem;
+  color: var(--muted);
+  font-weight: 400;
 }
 
 /* ── EXPERIENCE TIMELINE ── */
@@ -176,14 +192,6 @@ h2 {
   color: var(--muted);
   padding-top: 0.2rem;
   line-height: 1.5;
-}
-.timeline-role {
-  font-weight: 500;
-  font-size: 1rem;
-  margin-bottom: 0.2rem;
-}
-.timeline-company {
-  margin-bottom: 0.6rem;
 }
 .timeline-desc {
   font-size: 0.9rem;
