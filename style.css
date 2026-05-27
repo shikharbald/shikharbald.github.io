@@ -81,8 +81,8 @@ nav {
 .theme-switch {
   position: relative;
   display: inline-block;
-  width: 42px;
-  height: 24px;
+  width: 52px;
+  height: 28px;
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -90,25 +90,28 @@ nav {
 .theme-switch .slider {
   position: absolute;
   inset: 0;
-  background: var(--border);
-  border-radius: 24px;
-  transition: background 0.2s;
+  background: #bfdbfe;
+  border-radius: 28px;
+  transition: background 0.3s;
 }
 .theme-switch .slider::before {
-  content: '';
+  content: '☀️';
   position: absolute;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   left: 3px;
   top: 3px;
-  background: var(--muted);
+  background: #fff;
   border-radius: 50%;
-  transition: transform 0.2s, background 0.2s;
+  transition: transform 0.3s;
+  font-size: 13px;
+  line-height: 22px;
+  text-align: center;
 }
-.theme-switch input:checked + .slider { background: var(--text); }
+.theme-switch input:checked + .slider { background: #334155; }
 .theme-switch input:checked + .slider::before {
-  transform: translateX(18px);
-  background: var(--bg);
+  content: '🌙';
+  transform: translateX(24px);
 }
 
 /* ── LAYOUT ── */
@@ -166,7 +169,7 @@ section + section { border-top: 1px solid var(--border); }
   background: var(--text);
   color: var(--bg);
 }
-.btn-primary:hover { background: #333; }
+.btn-primary:hover { opacity: 0.8; }
 .btn-ghost {
   background: transparent;
   color: var(--text);
@@ -254,6 +257,28 @@ h2 {
   padding: 0.25rem 0.6rem;
   border-radius: 4px;
   border: 1px solid var(--border);
+}
+
+/* ── COURSEWORK GRID ── */
+.coursework {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem 2rem;
+  margin-top: 0.75rem;
+}
+.coursework-heading {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.coursework ul { list-style: none; padding: 0; }
+.coursework li {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 /* ── BLOG POSTS (home preview) ── */
@@ -403,6 +428,7 @@ footer a:hover { color: var(--text); }
   nav { padding: 0 1.25rem; }
   main { padding: 0 1.25rem; }
   .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
+  .coursework { grid-template-columns: 1fr; }
   .timeline-date { margin-bottom: 0.25rem; }
   .post-item { grid-template-columns: 1fr; gap: 0.25rem; }
   .post-date { margin-bottom: 0.25rem; }
