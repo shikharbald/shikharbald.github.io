@@ -463,6 +463,30 @@ footer a:hover { color: var(--text); }
   max-width: 560px;
 }
 
+/* ── SKILLS CANVAS ── */
+.skills-legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.legend-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+#skills-canvas { display: block; }
+
 /* ── SCROLL ANIMATIONS ── */
 .js-animate .timeline-item,
 .js-animate .exp-item {
