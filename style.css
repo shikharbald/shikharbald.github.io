@@ -398,14 +398,25 @@ footer a:hover { color: var(--text); }
   color: var(--muted);
   margin-top: 0.3rem;
 }
+.exp-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.exp-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  object-fit: cover;
+}
 .exp-date {
   font-family: var(--mono);
   font-size: 0.72rem;
   color: var(--muted);
   letter-spacing: 0.06em;
   white-space: nowrap;
-  padding-top: 0.45rem;
-  flex-shrink: 0;
 }
 .exp-rule {
   border: none;
