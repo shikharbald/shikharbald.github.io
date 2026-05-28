@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Experience — Shikhar Nandi</title>
   <meta name="description" content="Work experience and education of Shikhar Nandi." />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 
@@ -35,71 +35,87 @@
   <!-- EXPERIENCE -->
   <section id="experience">
     <p class="section-label">// experience</p>
-    <div class="timeline">
+    <div class="exp-list">
 
-      <div class="timeline-item">
-        <div class="timeline-date">2026 — now</div>
-        <div>
-          <div class="timeline-header">
-            <img src="logos/stripe.jpeg" alt="Stripe" class="company-logo" />
-            <div class="timeline-header-text">
-              <div class="timeline-company">Stripe</div>
-              <div class="timeline-role">Software Engineer II</div>
-            </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Stripe</div>
+            <div class="exp-role">Software Engineer II</div>
           </div>
-          <p class="timeline-desc">Working on bank connectivity infrastructure.</p>
-          <div class="timeline-tags">
-            <span class="tag">Go</span>
-            <span class="tag">Python</span>
-          </div>
+          <div class="exp-date">2026 — now</div>
+        </div>
+        <hr class="exp-rule" />
+        <p class="exp-desc">Working on bank connectivity infrastructure.</p>
+        <div class="timeline-tags">
+          <span class="tag">Go</span>
+          <span class="tag">Python</span>
         </div>
       </div>
 
-      <div class="timeline-item">
-        <div class="timeline-date">2025 — 2026</div>
-        <div>
-          <div class="timeline-header">
-            <img src="logos/ea.jpeg" alt="Electronic Arts" class="company-logo" />
-            <div class="timeline-header-text">
-              <div class="timeline-company">Electronic Arts</div>
-              <div class="timeline-role">Software Engineer II</div>
-            </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Electronic Arts</div>
+            <div class="exp-role">Software Engineer II</div>
           </div>
-          <p class="timeline-desc">
-            Built the Recently Met friends recommendation pipeline in Go, serving 5M+ active players across all EA titles.
-            Cut processing time from 10+ min to 10 sec, boosted engagement 20%, and reduced new game title onboarding from 10 days to 4 hours.
-          </p>
-          <div class="timeline-tags">
-            <span class="tag">Go</span>
-            <span class="tag">Python</span>
-            <span class="tag">Redis</span>
-            <span class="tag">StarRocksDB</span>
-            <span class="tag">Kubernetes</span>
+          <div class="exp-date">2025 — 2026</div>
+        </div>
+        <hr class="exp-rule" />
+        <div class="exp-stats">
+          <div class="exp-stat">
+            <span class="exp-stat-num">5M+</span>
+            <span class="exp-stat-label">players served</span>
           </div>
+          <div class="exp-stat">
+            <span class="exp-stat-num">60×</span>
+            <span class="exp-stat-label">faster pipeline</span>
+          </div>
+          <div class="exp-stat">
+            <span class="exp-stat-num">20%</span>
+            <span class="exp-stat-label">engagement boost</span>
+          </div>
+        </div>
+        <p class="exp-desc">Built the Recently Met friends recommendation pipeline in Go, serving 5M+ active players across all EA titles. Cut processing time from 10+ min to 10 sec and reduced new title onboarding from 10 days to 4 hours.</p>
+        <div class="timeline-tags">
+          <span class="tag">Go</span>
+          <span class="tag">Python</span>
+          <span class="tag">Redis</span>
+          <span class="tag">StarRocksDB</span>
+          <span class="tag">Kubernetes</span>
         </div>
       </div>
 
-      <div class="timeline-item">
-        <div class="timeline-date">2021 — 2024</div>
-        <div>
-          <div class="timeline-header">
-            <img src="logos/capitalone.jpeg" alt="Capital One" class="company-logo" />
-            <div class="timeline-header-text">
-              <div class="timeline-company">Capital One</div>
-              <div class="timeline-role">Senior Software Engineer</div>
-            </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-company">Capital One</div>
+            <div class="exp-role">Senior Software Engineer</div>
           </div>
-          <p class="timeline-desc">
-            Re-architected APIs and microservices on AWS Lambda serving 60K+ customers/month, cutting response times from 8s to 0.7s and runtime costs by 80%.
-            Shipped features across Python, TypeScript, and React touching payments, compliance, and customer acquisition.
-          </p>
-          <div class="timeline-tags">
-            <span class="tag">Python</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">AWS Lambda</span>
-            <span class="tag">React</span>
-            <span class="tag">SQS</span>
+          <div class="exp-date">2021 — 2024</div>
+        </div>
+        <hr class="exp-rule" />
+        <div class="exp-stats">
+          <div class="exp-stat">
+            <span class="exp-stat-num">60K+</span>
+            <span class="exp-stat-label">customers / month</span>
           </div>
+          <div class="exp-stat">
+            <span class="exp-stat-num">0.7s</span>
+            <span class="exp-stat-label">response time<br>(was 8s)</span>
+          </div>
+          <div class="exp-stat">
+            <span class="exp-stat-num">80%</span>
+            <span class="exp-stat-label">cost reduction</span>
+          </div>
+        </div>
+        <p class="exp-desc">Re-architected APIs and microservices on AWS Lambda. Shipped features across Python, TypeScript, and React touching payments, compliance, and customer acquisition.</p>
+        <div class="timeline-tags">
+          <span class="tag">Python</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">AWS Lambda</span>
+          <span class="tag">React</span>
+          <span class="tag">SQS</span>
         </div>
       </div>
 
@@ -222,7 +238,7 @@
     });
   }, { threshold: 0.08 });
 
-  document.querySelectorAll('.timeline-item').forEach((item, i) => {
+  document.querySelectorAll('.exp-item, .timeline-item').forEach((item, i) => {
     item.style.transitionDelay = `${i * 0.08}s`;
     observer.observe(item);
   });

@@ -375,19 +375,90 @@ footer {
 footer a { color: var(--muted); text-decoration: none; }
 footer a:hover { color: var(--text); }
 
+/* ── EDITORIAL EXPERIENCE ── */
+.exp-list { display: flex; flex-direction: column; }
+.exp-item { padding: 2.25rem 0; }
+.exp-item + .exp-item { border-top: 1px solid var(--border); }
+.exp-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.exp-company {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--text);
+}
+.exp-role {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+.exp-date {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  padding-top: 0.45rem;
+  flex-shrink: 0;
+}
+.exp-rule {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 0 1.25rem;
+}
+.exp-stats {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 1.25rem;
+}
+.exp-stat-num {
+  display: block;
+  font-family: var(--serif);
+  font-size: 2.25rem;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.3rem;
+}
+.exp-stat-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.exp-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+  max-width: 560px;
+}
+
 /* ── SCROLL ANIMATIONS ── */
-.js-animate .timeline-item {
+.js-animate .timeline-item,
+.js-animate .exp-item {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
               transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.js-animate .timeline-item.visible {
+.js-animate .timeline-item.visible,
+.js-animate .exp-item.visible {
   opacity: 1;
   transform: translateY(0);
 }
 @media (prefers-reduced-motion: reduce) {
-  .js-animate .timeline-item { transition: none; opacity: 1; transform: none; }
+  .js-animate .timeline-item,
+  .js-animate .exp-item { transition: none; opacity: 1; transform: none; }
 }
 
 /* ── BLOG PAGE ── */
