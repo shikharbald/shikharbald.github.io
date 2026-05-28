@@ -375,6 +375,21 @@ footer {
 footer a { color: var(--muted); text-decoration: none; }
 footer a:hover { color: var(--text); }
 
+/* ── SCROLL ANIMATIONS ── */
+.js-animate .timeline-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.js-animate .timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .js-animate .timeline-item { transition: none; opacity: 1; transform: none; }
+}
+
 /* ── BLOG PAGE ── */
 .blog-header { padding: 4rem 0 3rem; }
 .blog-header h1 {

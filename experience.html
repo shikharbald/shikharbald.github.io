@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Experience — Shikhar Nandi</title>
   <meta name="description" content="Work experience and education of Shikhar Nandi." />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
 
@@ -210,6 +210,22 @@
   const _dark = document.documentElement.classList.contains('dark');
   document.getElementById('theme-checkbox').checked = _dark;
   document.querySelector('.knob').textContent = _dark ? '🌙' : '☀️';
+
+  // Scroll animations
+  document.documentElement.classList.add('js-animate');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.timeline-item').forEach((item, i) => {
+    item.style.transitionDelay = `${i * 0.08}s`;
+    observer.observe(item);
+  });
 </script>
 
 </body>
