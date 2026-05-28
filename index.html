@@ -135,10 +135,24 @@
     { name: 'SQL',         cat: 'lang',  w: 0.73 },
     { name: 'React',       cat: 'fw',    w: 0.76 },
     { name: 'REST',        cat: 'fw',    w: 0.79 },
-  ];
+  ].map((s, i) => {
+    // deterministic drift params per node
+    const seed = i * 7 + 3;
+    return {
+      ...s,
+      dax: 5 + (seed % 5),        // x drift amplitude px
+      day: 4 + ((seed * 3) % 5),  // y drift amplitude px
+      dfx: 0.18 + (seed % 7) * 0.04,  // x freq Hz
+      dfy: 0.22 + (seed % 5) * 0.05,  // y freq Hz
+      dpx: (seed % 10) * 0.63,    // x phase offset
+      dpy: (seed % 8) * 0.79,     // y phase offset
+      wx: 0, wy: 0, wvx: 0, wvy: 0,   // spring state
+    };
+  });
 
   const COLORS = { infra: '#6366f1', lang: '#e07555', fw: '#10b981' };
   const BASE = 200;
+  const SPRING_K = 90, SPRING_D = 7, IMPULSE = 18;
 
   function setup() {
     const dpr = window.devicePixelRatio || 1;
@@ -150,20 +164,21 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  let prog = 0, hov = -1;
+  let prog = 0, hov = -1, raf = null, t0 = null, lastTs = null;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
   function angle(i) { return 0.12 * Math.PI + (i / (SKILLS.length - 1)) * 0.76 * Math.PI; }
 
-  function draw() {
+  function draw(time) {
     const W = canvas.clientWidth, H = canvas.clientHeight;
     const cx = W / 2, cy = H - 2;
     const sc = Math.min(1, W / 640);
     const dark = document.documentElement.classList.contains('dark');
+    const driftScale = reducedMotion ? 0 : Math.max(0, (prog - 0.7) / 0.3);
 
     ctx.clearRect(0, 0, W, H);
 
-    // origin
     ctx.beginPath();
     ctx.arc(cx, cy, 3, 0, Math.PI * 2);
     ctx.fillStyle = dark ? '#3a3a3a' : '#d4d4d4';
@@ -174,12 +189,21 @@
       const maxLen = BASE * s.w * sc;
       const p = easeOut(Math.max(0, Math.min(1, (prog - i * 0.055) / 0.65)));
       const len = maxLen * p;
-      const ex = cx + len * Math.cos(a);
-      const ey = cy - len * Math.sin(a);
+
+      // base endpoint
+      const bx = cx + len * Math.cos(a);
+      const by = cy - len * Math.sin(a);
+
+      // drift offset
+      const dx = s.dax * Math.sin(time * s.dfx + s.dpx) * driftScale;
+      const dy = s.day * Math.sin(time * s.dfy + s.dpy) * driftScale;
+
+      const ex = bx + dx + s.wx;
+      const ey = by + dy + s.wy;
+
       const isH = hov === i;
       const col = COLORS[s.cat];
 
-      // line
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(ex, ey);
@@ -191,13 +215,11 @@
       const fa = Math.min(1, (p - 0.82) / 0.18);
       ctx.globalAlpha = fa;
 
-      // dot
       ctx.beginPath();
       ctx.arc(ex, ey, isH ? 5 : 3.5, 0, Math.PI * 2);
       ctx.fillStyle = col;
       ctx.fill();
 
-      // label
       const ca = Math.cos(a);
       const lx = ex + 11 * ca;
       const ly = ey - 11 * Math.sin(a);
@@ -211,16 +233,27 @@
     });
   }
 
-  // animation
-  let raf = null, t0 = null;
   function tick(ts) {
-    if (!t0) t0 = ts;
+    if (!t0) { t0 = ts; lastTs = ts; }
+    const dt = Math.min((ts - lastTs) / 1000, 0.05);
+    lastTs = ts;
+
     prog = Math.min((ts - t0) / 1600, 1);
-    draw();
-    if (prog < 1) raf = requestAnimationFrame(tick);
+    const time = (ts - t0) / 1000;
+
+    // update spring for each skill
+    SKILLS.forEach(s => {
+      s.wvx += (-SPRING_K * s.wx - SPRING_D * s.wvx) * dt;
+      s.wvy += (-SPRING_K * s.wy - SPRING_D * s.wvy) * dt;
+      s.wx += s.wvx * dt;
+      s.wy += s.wvy * dt;
+    });
+
+    draw(time);
+    raf = requestAnimationFrame(tick);
   }
 
-  // hover
+  // hover with spring impulse
   canvas.addEventListener('mousemove', e => {
     const r = canvas.getBoundingClientRect();
     const mx = e.clientX - r.left, my = e.clientY - r.top;
@@ -230,28 +263,37 @@
     SKILLS.forEach((s, i) => {
       const a = angle(i);
       const len = BASE * s.w * sc;
-      if (Math.hypot(mx - (cx + len * Math.cos(a)), my - (cy - len * Math.sin(a))) < 14) found = i;
+      if (Math.hypot(mx - (cx + len * Math.cos(a)), my - (cy - len * Math.sin(a))) < 16) found = i;
     });
     if (found !== hov) {
+      if (found >= 0 && !reducedMotion) {
+        const s = SKILLS[found];
+        const a = angle(found);
+        // perpendicular impulse (90° to line direction)
+        const side = Math.random() < 0.5 ? 1 : -1;
+        s.wvx += Math.sin(a) * IMPULSE * side;
+        s.wvy += Math.cos(a) * IMPULSE * side;
+      }
       hov = found;
       canvas.style.cursor = found >= 0 ? 'pointer' : 'default';
-      draw();
     }
   });
-  canvas.addEventListener('mouseleave', () => { if (hov !== -1) { hov = -1; draw(); } });
+  canvas.addEventListener('mouseleave', () => { hov = -1; canvas.style.cursor = 'default'; });
 
   setup();
-  draw();
 
   const obs = new IntersectionObserver(([e]) => {
     if (e.isIntersecting) {
-      t0 = null; cancelAnimationFrame(raf); requestAnimationFrame(tick); obs.disconnect();
+      t0 = null; lastTs = null;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(tick);
+      obs.disconnect();
     }
   }, { threshold: 0.2 });
   obs.observe(canvas);
 
-  window.addEventListener('resize', () => { setup(); draw(); });
-  document.getElementById('theme-checkbox').addEventListener('change', () => setTimeout(draw, 30));
+  window.addEventListener('resize', () => { setup(); });
+  document.getElementById('theme-checkbox').addEventListener('change', () => {});
 })();
 </script>
 
