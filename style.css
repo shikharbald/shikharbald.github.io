@@ -176,6 +176,55 @@ section + section { border-top: 1px solid var(--border); }
 }
 .btn-ghost:hover { background: var(--surface); }
 
+/* ── BIO ── */
+.bio { margin-bottom: 2rem; }
+.bio p {
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 580px;
+  margin-bottom: 1rem;
+}
+.bio p:last-child { margin-bottom: 0; }
+
+/* ── THESIS CALLOUT ── */
+.thesis-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  background: var(--surface);
+  transition: border-color 0.15s, background 0.15s;
+  max-width: 480px;
+}
+.thesis-link:hover { border-color: var(--accent); background: var(--bg); }
+.thesis-icon {
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+.thesis-title {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+.thesis-sub {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+}
+
 /* ── SECTION HEADINGS ── */
 .section-label {
   font-family: var(--mono);

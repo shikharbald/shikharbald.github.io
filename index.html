@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,241 +10,101 @@
       document.documentElement.classList.add('dark');
     }
   </script>
-  <link rel="stylesheet" href="style.css?v=3" />
+  <link rel="stylesheet" href="style.css?v=4" />
 </head>
-
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">Shikhar Nandi</a>
-      <ul class="nav-links">
-        <li><a href="/" class="active">About</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="https://github.com/shikharbald" target="_blank" rel="noopener">GitHub ↗</a></li>
-      </ul>
-      <label class="theme-switch" aria-label="Toggle dark mode">
-        <input type="checkbox" id="theme-checkbox" onchange="toggleTheme(this)" />
-        <span class="slider"><span class="knob">☀️</span></span>
-      </label>
-    </div>
-  </nav>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Shikhar Nandi</a>
+    <ul class="nav-links">
+      <li><a href="/" class="active">About</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="https://github.com/shikharbald" target="_blank" rel="noopener">GitHub ↗</a></li>
+    </ul>
+    <label class="theme-switch" aria-label="Toggle dark mode">
+      <input type="checkbox" id="theme-checkbox" onchange="toggleTheme(this)" />
+      <span class="slider"><span class="knob">☀️</span></span>
+    </label>
+  </div>
+</nav>
 
-  <main>
+<main>
 
-    <!-- HERO -->
-    <section class="hero">
-      <p class="hero-eyebrow">Software Engineer</p>
-      <h1>I build things that scale<em> — fast.</em></h1>
-      <p class="hero-sub">
-        Currently at Stripe. Previously built real-time recommendation systems at EA serving 5M+ players,
-        and re-architected AWS infrastructure at Capital One. Based in Toronto.
+  <!-- BIO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Software Engineer · Toronto</p>
+    <h1>Hi, I'm Shikhar.</h1>
+    <div class="bio">
+      <p>
+        I build distributed systems and developer tooling. Currently at Stripe, working on the infrastructure
+        that connects banks to the global payments network.
       </p>
-      <div class="hero-links">
-        <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">View Resume ↗</a>
-        <a href="blog.html" class="btn btn-ghost">Read the blog →</a>
-        <a href="mailto:shikharndaa@gmail.com" class="btn btn-ghost">Get in touch</a>
-      </div>
-    </section>
+      <p>
+        I studied Economics and Computer Science at UBC — an unusual combination I keep finding useful.
+        The econ degree gave me a way of thinking about systems: incentives, constraints, second-order effects.
+        The CS degree gave me the tools to act on it. My undergrad thesis used Poisson regression and ELO ratings
+        to quantify what Messi would be worth in the Premier League — the kind of problem at the intersection
+        of statistics and sport that drew me into quantitative work in the first place.
+      </p>
+      <p>
+        Before Stripe I spent time at EA building real-time social graph pipelines for 5M+ players,
+        and at Capital One re-architecting APIs and microservices on AWS. I write occasionally about
+        engineering and things I've been figuring out.
+      </p>
+    </div>
+    <div class="hero-links">
+      <a href="experience.html" class="btn btn-primary">Experience →</a>
+      <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost">Resume ↗</a>
+      <a href="blog.html" class="btn btn-ghost">Blog →</a>
+      <a href="mailto:shikharndaa@gmail.com" class="btn btn-ghost">Get in touch</a>
+    </div>
+  </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience">
-      <p class="section-label">// experience</p>
-      <div class="timeline">
+  <!-- RECENT WRITING -->
+  <section id="writing">
+    <p class="section-label">// recent writing</p>
+    <div class="post-grid">
 
-        <div class="timeline-item">
-          <div class="timeline-date">2026 — present</div>
-          <div>
-            <div class="timeline-header">
-              <img src="logos/stripe.jpeg" alt="Stripe" class="company-logo" />
-              <div class="timeline-header-text">
-                <div class="timeline-company">Stripe</div>
-                <div class="timeline-role">Software Engineer II</div>
-              </div>
-            </div>
-            <p class="timeline-desc">Working on bank connectivity infrastructure.</p>
-            <div class="timeline-tags">
-              <span class="tag">Go</span>
-              <span class="tag">Python</span>
-            </div>
-          </div>
+      <a href="my-first-post.html" class="post-item">
+        <div class="post-date">May 2025</div>
+        <div>
+          <div class="post-title">How I think about system design interviews</div>
+          <div class="post-excerpt">The framework I wish I'd had going in — structure, trade-offs, and what interviewers actually care about.</div>
         </div>
+      </a>
 
-        <div class="timeline-item">
-          <div class="timeline-date">2025 — 2026</div>
-          <div>
-            <div class="timeline-header">
-              <img src="logos/ea.jpeg" alt="Electronic Arts" class="company-logo" />
-              <div class="timeline-header-text">
-                <div class="timeline-company">Electronic Arts</div>
-                <div class="timeline-role">Software Engineer II</div>
-              </div>
-            </div>
-            <p class="timeline-desc">
-              Built the Recently Met friends recommendation pipeline in Go, serving 5M+ active players across all EA
-              titles.
-              Cut processing time from 10+ min to 10 sec, boosted engagement 20%, and reduced new game title onboarding
-              from 10 days to 4 hours.
-            </p>
-            <div class="timeline-tags">
-              <span class="tag">Go</span>
-              <span class="tag">Python</span>
-              <span class="tag">Redis</span>
-              <span class="tag">StarRocksDB</span>
-              <span class="tag">Kubernetes</span>
-            </div>
-          </div>
-        </div>
+    </div>
 
-        <div class="timeline-item">
-          <div class="timeline-date">2021 — 2024</div>
-          <div>
-            <div class="timeline-header">
-              <img src="logos/capitalone.jpeg" alt="Capital One" class="company-logo" />
-              <div class="timeline-header-text">
-                <div class="timeline-company">Capital One</div>
-                <div class="timeline-role">Senior Software Engineer</div>
-              </div>
-            </div>
-            <p class="timeline-desc">
-              Re-architected APIs and microservices on AWS Lambda serving 60K+ customers/month, cutting response times
-              from 8s to 0.7s and runtime costs by 80%.
-              Shipped features across Python, TypeScript, and React touching payments, compliance, and customer
-              acquisition.
-            </p>
-            <div class="timeline-tags">
-              <span class="tag">Python</span>
-              <span class="tag">TypeScript</span>
-              <span class="tag">AWS Lambda</span>
-              <span class="tag">React</span>
-              <span class="tag">SQS</span>
-            </div>
-          </div>
-        </div>
+    <div style="margin-top: 2rem;">
+      <a href="blog.html" class="btn btn-ghost">All posts →</a>
+    </div>
+  </section>
 
-      </div>
-    </section>
+</main>
 
-    <!-- EDUCATION -->
-    <section id="education">
-      <p class="section-label">// education</p>
-      <div class="timeline">
+<footer>
+  <span>© 2026 Shikhar Nandi</span>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/shikharbald" target="_blank" rel="noopener">github</a>
+  &nbsp;·&nbsp;
+  <a href="https://linkedin.com/in/shikharn14" target="_blank" rel="noopener">linkedin</a>
+  &nbsp;·&nbsp;
+  <a href="mailto:shikharndaa@gmail.com">email</a>
+</footer>
 
-        <div class="timeline-item">
-          <div class="timeline-date">2015 — 2020</div>
-          <div>
-            <div class="timeline-header">
-              <img src="logos/ubc-logo.png" alt="UBC" class="company-logo" />
-              <div class="timeline-header-text">
-                <div class="timeline-company">University of British Columbia</div>
-                <div class="timeline-role">B.Sc. Economics & Computer Science · GPA 3.4</div>
-              </div>
-            </div>
-            <div class="coursework">
-              <div class="coursework-col">
-                <div class="coursework-heading">Computer Science</div>
-                <ul>
-                  <li>Computational Programming</li>
-                  <li>Models of Computation</li>
-                  <li>Software Construction</li>
-                  <li>Intro to Computer Systems</li>
-                  <li>Basic Algorithms & Data Structures</li>
-                  <li>Intro to Relational Databases</li>
-                  <li>Intermediate Algorithm Design</li>
-                  <li>Computer Hardware & OS</li>
-                  <li>Machine Learning & Data Mining</li>
-                  <li>Computer Graphics</li>
-                  <li>Internet Computing</li>
-                  <li>Numerical Computation</li>
-                  <li>Computer Vision</li>
-                  <li>Computers and Society</li>
-                  <li>Computational Optimization</li>
-                </ul>
-              </div>
-              <div class="coursework-col">
-                <div class="coursework-heading">Mathematics</div>
-                <ul>
-                  <li>Differential Calculus</li>
-                  <li>Integral Calculus</li>
-                  <li>Calculus III</li>
-                  <li>Mathematical Proof</li>
-                  <li>Matrix Algebra</li>
-                  <li>Linear Programming</li>
-                  <li>Applied Linear Algebra</li>
-                </ul>
-              </div>
-              <div class="coursework-col">
-                <div class="coursework-heading">Economics</div>
-                <ul>
-                  <li>Principles of Microeconomics</li>
-                  <li>Principles of Macroeconomics</li>
-                  <li>Microeconomic Policy</li>
-                  <li>Understanding Globalization</li>
-                  <li>International Trade</li>
-                  <li>Intermediate Macroeconomics</li>
-                  <li>Intro to Empirical Economics</li>
-                  <li>Intermediate Microeconomics</li>
-                  <li>Methods of Empirical Research</li>
-                  <li>International Macro & Finance</li>
-                  <li>Economic History of the US</li>
-                  <li>Money and Banking</li>
-                  <li>Seminar in Applied Economics</li>
-                  <li>Public Finance Policy</li>
-                  <li>Issues in Economic Development</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- RECENT WRITING -->
-    <section id="writing">
-      <p class="section-label">// recent writing</p>
-      <div class="post-grid">
-
-        <a href="my-first-post.html" class="post-item">
-          <div class="post-date">May 2025</div>
-          <div>
-            <div class="post-title">How I think about system design interviews</div>
-            <div class="post-excerpt">The framework I wish I'd had going in — structure, trade-offs, and what
-              interviewers actually care about.</div>
-          </div>
-        </a>
-
-      </div>
-
-      <div style="margin-top: 2rem;">
-        <a href="blog.html" class="btn btn-ghost">All posts →</a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <span>© 2026 Shikhar Nandi</span>
-    &nbsp;·&nbsp;
-    <a href="https://github.com/shikharbald" target="_blank" rel="noopener">github</a>
-    &nbsp;·&nbsp;
-    <a href="https://linkedin.com/in/shikharn14" target="_blank" rel="noopener">linkedin</a>
-    &nbsp;·&nbsp;
-    <a href="mailto:shikharndaa@gmail.com">email</a>
-  </footer>
-
-  <script>
-    function toggleTheme(checkbox) {
-      const isDark = checkbox.checked;
-      document.documentElement.classList.toggle('dark', isDark);
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      document.querySelector('.knob').textContent = isDark ? '🌙' : '☀️';
-    }
-    const _dark = document.documentElement.classList.contains('dark');
-    document.getElementById('theme-checkbox').checked = _dark;
-    document.querySelector('.knob').textContent = _dark ? '🌙' : '☀️';
-  </script>
+<script>
+  function toggleTheme(checkbox) {
+    const isDark = checkbox.checked;
+    document.documentElement.classList.toggle('dark', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    document.querySelector('.knob').textContent = isDark ? '🌙' : '☀️';
+  }
+  const _dark = document.documentElement.classList.contains('dark');
+  document.getElementById('theme-checkbox').checked = _dark;
+  document.querySelector('.knob').textContent = _dark ? '🌙' : '☀️';
+</script>
 
 </body>
-
 </html>
