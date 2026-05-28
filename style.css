@@ -316,6 +316,15 @@ h2 {
   margin-left: calc(-140px - 2rem);
   width: calc(100% + 140px + 2rem);
 }
+.coursework-title {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+  margin-top: 0.75rem;
+}
 .coursework-heading {
   font-family: var(--mono);
   font-size: 0.65rem;
