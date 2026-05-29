@@ -410,6 +410,54 @@ h2 {
   line-height: 1.6;
 }
 
+/* ── NOW / INTERESTS ── */
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+.interest-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 1.4rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 155px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.interest-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.18);
+}
+.card-game   { background: linear-gradient(145deg, #0b1a28 0%, #16303f 100%); }
+.card-hobby  { background: linear-gradient(145deg, #0c1f10 0%, #1a3320 100%); }
+.card-travel { background: linear-gradient(145deg, #201208 0%, #33200e 100%); }
+.interest-emoji {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  font-size: 2rem;
+  opacity: 0.5;
+  line-height: 1;
+}
+.interest-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: 0.3rem;
+}
+.interest-value {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
 /* ── BLOG POSTS (home preview) ── */
 .post-grid { display: flex; flex-direction: column; gap: 0; }
 .post-item {
@@ -679,6 +727,7 @@ footer a:hover { color: var(--text); }
   main { padding: 0 1.25rem; }
   .hero-layout { flex-direction: column-reverse; gap: 1.5rem; }
   .avatar-wrap { width: 110px; margin-top: 0; }
+  .interests-grid { grid-template-columns: 1fr; }
   .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
   .coursework { grid-template-columns: 1fr; margin-left: 0; width: 100%; }
   .timeline-date { margin-bottom: 0.25rem; }
