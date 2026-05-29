@@ -534,10 +534,22 @@ footer a:hover { color: var(--text); }
 .exp-item + .exp-item { border-top: 1px solid var(--border); }
 .exp-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+.exp-company-group {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.exp-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 .exp-company {
   font-family: var(--serif);
@@ -549,20 +561,7 @@ footer a:hover { color: var(--text); }
 .exp-role {
   font-size: 0.875rem;
   color: var(--muted);
-  margin-top: 0.3rem;
-}
-.exp-header-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.5rem;
-  flex-shrink: 0;
-}
-.exp-logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  object-fit: cover;
+  margin-top: 0.2rem;
 }
 .exp-date {
   font-family: var(--mono);
@@ -570,12 +569,9 @@ footer a:hover { color: var(--text); }
   color: var(--muted);
   letter-spacing: 0.06em;
   white-space: nowrap;
+  flex-shrink: 0;
 }
-.exp-rule {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 0 0 1.25rem;
-}
+.exp-now { color: var(--accent); }
 .exp-stats {
   display: flex;
   gap: 3rem;
