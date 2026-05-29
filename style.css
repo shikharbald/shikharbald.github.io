@@ -140,9 +140,9 @@ section + section { border-top: 1px solid var(--border); }
 }
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-size: clamp(3rem, 7vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   margin-bottom: 1.25rem;
 }
 .hero-sub {
