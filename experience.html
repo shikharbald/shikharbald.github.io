@@ -145,7 +145,10 @@
           </div>
           <div class="exp-date">2015 — 2020</div>
         </div>
-        <p class="coursework-title">Coursework</p>
+        <button class="coursework-toggle" aria-expanded="false" onclick="const el=this.nextElementSibling;const open=el.classList.toggle('open');this.setAttribute('aria-expanded',open);this.querySelector('.toggle-icon').textContent=open?'−':'+';">
+          <span>Coursework</span><span class="toggle-icon">+</span>
+        </button>
+        <div class="coursework-collapse">
         <div class="coursework">
             <div class="coursework-col">
               <div class="coursework-heading">Computer Science</div>
@@ -200,6 +203,7 @@
               </ul>
             </div>
           </div>
+        </div>
         <a href="thesis.pdf" target="_blank" rel="noopener" class="thesis-link">
           <span class="thesis-icon">↗</span>
           <div>
