@@ -10,7 +10,7 @@
       document.documentElement.classList.add('dark');
     }
   </script>
-  <link rel="stylesheet" href="style.css?v=12" />
+  <link rel="stylesheet" href="style.css?v=13" />
 </head>
 <body>
 
@@ -114,6 +114,42 @@
   const _dark = document.documentElement.classList.contains('dark');
   document.getElementById('theme-checkbox').checked = _dark;
   document.querySelector('.knob').textContent = _dark ? '🌙' : '☀️';
+
+  // Now cards: staggered scroll reveal + 3D tilt + specular shine
+  (function () {
+    const cards = document.querySelectorAll('.interest-card');
+    if (!cards.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      cards.forEach(c => c.classList.add('visible')); return;
+    }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        setTimeout(() => e.target.classList.add('visible'), +e.target.dataset.d || 0);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.15 });
+    cards.forEach((c, i) => { c.dataset.d = i * 130; io.observe(c); });
+
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'border-color 0.2s';
+      });
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        card.style.transform = `perspective(700px) rotateX(${(y - 0.5) * -12}deg) rotateY(${(x - 0.5) * 12}deg)`;
+        card.style.setProperty('--shine-x', `${x * 100}%`);
+        card.style.setProperty('--shine-y', `${y * 100}%`);
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.2s';
+        card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg)';
+        setTimeout(() => { card.style.transition = ''; card.style.transform = ''; }, 400);
+      });
+    });
+  })();
 
   const _av = document.getElementById('avatar');
   if (_av) {
