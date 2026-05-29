@@ -124,6 +124,12 @@ section + section { border-top: 1px solid var(--border); }
 
 /* ── HERO ── */
 .hero { padding: 5rem 0 4rem; }
+.hero-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.75rem;
+}
+.hero-content { flex: 1; min-width: 0; }
 .hero-eyebrow {
   font-family: var(--mono);
   font-size: 0.75rem;
@@ -187,6 +193,70 @@ section + section { border-top: 1px solid var(--border); }
   margin-bottom: 1rem;
 }
 .bio p:last-child { margin-bottom: 0; }
+
+/* ── AVATAR ── */
+.avatar-wrap {
+  flex-shrink: 0;
+  width: 170px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  margin-top: 2.75rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+}
+.avatar {
+  width: 100%;
+  display: block;
+  opacity: 0;
+}
+@keyframes avatar-reveal {
+  0% {
+    clip-path: inset(49% 0% 49% 0%);
+    filter: brightness(7) saturate(0) blur(5px);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.85;
+  }
+  38% {
+    clip-path: inset(0% 0% 0% 0%);
+    filter: brightness(2.8) saturate(0) blur(0.5px);
+    opacity: 1;
+  }
+  72% {
+    filter: brightness(1.15) saturate(0.45);
+  }
+  100% {
+    clip-path: inset(0% 0% 0% 0%);
+    filter: brightness(1) saturate(1);
+    opacity: 1;
+  }
+}
+.avatar.loaded {
+  animation: avatar-reveal 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes scan-sweep {
+  from { top: -50%; }
+  to   { top: 130%; }
+}
+.avatar-wrap::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 48%;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    rgba(255,255,255,0.24) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: scan-sweep 0.7s 1.35s ease-in-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .avatar { opacity: 1; }
+  .avatar.loaded { animation: none; }
+  .avatar-wrap::after { animation: none; display: none; }
+}
 
 /* ── THESIS CALLOUT ── */
 .thesis-link {
@@ -607,6 +677,8 @@ footer a:hover { color: var(--text); }
 @media (max-width: 600px) {
   nav { padding: 0 1.25rem; }
   main { padding: 0 1.25rem; }
+  .hero-layout { flex-direction: column-reverse; gap: 1.5rem; }
+  .avatar-wrap { width: 110px; margin-top: 0; }
   .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
   .coursework { grid-template-columns: 1fr; margin-left: 0; width: 100%; }
   .timeline-date { margin-bottom: 0.25rem; }
