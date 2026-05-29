@@ -136,6 +136,7 @@
     <p class="section-label">// skills</p>
     <div class="skills-legend">
       <span class="legend-item"><span class="legend-dot" style="background:#f59e0b"></span>AWS</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#3b82f6"></span>Infrastructure</span>
       <span class="legend-item"><span class="legend-dot" style="background:#e07555"></span>Languages</span>
       <span class="legend-item"><span class="legend-dot" style="background:#10b981"></span>Frameworks</span>
       <span class="legend-item"><span class="legend-dot" style="background:#8b5cf6"></span>AI</span>
@@ -273,21 +274,21 @@
   const ctx = canvas.getContext('2d');
 
   const SKILLS = [
-    { name: 'AWS Lambda',  cat: 'aws',  w: 0.93 },
-    { name: 'SQS',         cat: 'aws',  w: 0.80 },
-    { name: 'S3',          cat: 'aws',  w: 0.85 },
-    { name: 'Kubernetes',  cat: 'aws',  w: 0.87 },
-    { name: 'Redis',       cat: 'aws',  w: 0.83 },
-    { name: 'StarRocksDB', cat: 'aws',  w: 0.70 },
-    { name: 'Go',          cat: 'lang', w: 1.00 },
-    { name: 'Python',      cat: 'lang', w: 0.91 },
-    { name: 'TypeScript',  cat: 'lang', w: 0.80 },
-    { name: 'SQL',         cat: 'lang', w: 0.73 },
-    { name: 'React',       cat: 'fw',   w: 0.76 },
-    { name: 'REST',        cat: 'fw',   w: 0.82 },
-    { name: 'gRPC',        cat: 'fw',   w: 0.72 },
-    { name: 'Claude',      cat: 'ai',   w: 0.90 },
-    { name: 'Cursor',      cat: 'ai',   w: 0.85 },
+    { name: 'Lambda',      cat: 'aws',   w: 0.93 },
+    { name: 'S3',          cat: 'aws',   w: 0.88 },
+    { name: 'SQS',         cat: 'aws',   w: 0.82 },
+    { name: 'SNS',         cat: 'aws',   w: 0.78 },
+    { name: 'Kubernetes',  cat: 'infra', w: 0.87 },
+    { name: 'Redis',       cat: 'infra', w: 0.83 },
+    { name: 'Go',          cat: 'lang',  w: 1.00 },
+    { name: 'Python',      cat: 'lang',  w: 0.91 },
+    { name: 'TypeScript',  cat: 'lang',  w: 0.80 },
+    { name: 'SQL',         cat: 'lang',  w: 0.73 },
+    { name: 'React',       cat: 'fw',    w: 0.76 },
+    { name: 'REST',        cat: 'fw',    w: 0.82 },
+    { name: 'gRPC',        cat: 'fw',    w: 0.72 },
+    { name: 'Claude',      cat: 'ai',    w: 0.90 },
+    { name: 'Cursor',      cat: 'ai',    w: 0.85 },
   ].map((s, i) => {
     const seed = i * 7 + 3;
     return {
@@ -302,7 +303,7 @@
     };
   });
 
-  const COLORS = { aws: '#f59e0b', lang: '#e07555', fw: '#10b981', ai: '#8b5cf6' };
+  const COLORS = { aws: '#f59e0b', infra: '#3b82f6', lang: '#e07555', fw: '#10b981', ai: '#8b5cf6' };
   const BASE = 200;
   const SPRING_K = 90, SPRING_D = 7, IMPULSE = 18;
 
@@ -319,8 +320,13 @@
   let prog = 0, hov = -1, raf = null, t0 = null, lastTs = null;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // stagger computed dynamically so last node always reaches p=1 when prog=1
+  const N = SKILLS.length;
+  const FADE_DUR = 0.42;
+  const STAGGER = (1 - FADE_DUR) / (N - 1);
+
   function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-  function angle(i) { return 0.12 * Math.PI + (i / (SKILLS.length - 1)) * 0.76 * Math.PI; }
+  function angle(i) { return 0.12 * Math.PI + (i / (N - 1)) * 0.76 * Math.PI; }
 
   function draw(time) {
     const W = canvas.clientWidth, H = canvas.clientHeight;
@@ -339,7 +345,7 @@
     SKILLS.forEach((s, i) => {
       const a = angle(i);
       const maxLen = BASE * s.w * sc;
-      const p = easeOut(Math.max(0, Math.min(1, (prog - i * 0.055) / 0.65)));
+      const p = easeOut(Math.max(0, Math.min(1, (prog - i * STAGGER) / FADE_DUR)));
       const len = maxLen * p;
 
       const bx = cx + len * Math.cos(a);
