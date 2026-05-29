@@ -418,6 +418,24 @@ h2 {
   line-height: 1.6;
 }
 
+/* ── FIREWATCH STRIP ── */
+.firewatch-strip {
+  width: calc(100% + 4rem);
+  margin-left: -2rem;
+  height: 240px;
+  background-image: url(firewatch.webp);
+  background-size: cover;
+  background-position: center 28%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%);
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+}
+#now { border-top: none; }
+@media (max-width: 600px) {
+  .firewatch-strip { width: calc(100% + 2.5rem); margin-left: -1.25rem; height: 180px; }
+}
+
 /* ── NOW / INTERESTS ── */
 .interests-grid {
   display: grid;
