@@ -305,7 +305,8 @@
 
   const COLORS = { aws: '#f59e0b', infra: '#3b82f6', lang: '#e07555', fw: '#10b981', ai: '#8b5cf6' };
   const BASE = 200;
-  const SPRING_K = 90, SPRING_D = 7, IMPULSE = 18;
+  const SPRING_K = 90, SPRING_D = 7;
+  const REPEL_RADIUS = 75, REPEL_ACCEL = 1600;
 
   function setup() {
     const dpr = window.devicePixelRatio || 1;
@@ -317,7 +318,8 @@
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  let prog = 0, hov = -1, raf = null, t0 = null, lastTs = null;
+  let mouseX = null, mouseY = null;
+  let prog = 0, raf = null, t0 = null, lastTs = null;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // stagger computed dynamically so last node always reaches p=1 when prog=1
@@ -357,14 +359,13 @@
       const ex = bx + dx + s.wx;
       const ey = by + dy + s.wy;
 
-      const isH = hov === i;
       const col = COLORS[s.cat];
 
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(ex, ey);
-      ctx.strokeStyle = isH ? col : dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.09)';
-      ctx.lineWidth = isH ? 1.5 : 1;
+      ctx.strokeStyle = dark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.09)';
+      ctx.lineWidth = 1;
       ctx.stroke();
 
       if (p < 0.82) return;
@@ -372,15 +373,15 @@
       ctx.globalAlpha = fa;
 
       ctx.beginPath();
-      ctx.arc(ex, ey, isH ? 5 : 3.5, 0, Math.PI * 2);
+      ctx.arc(ex, ey, 3.5, 0, Math.PI * 2);
       ctx.fillStyle = col;
       ctx.fill();
 
       const ca = Math.cos(a);
       const lx = ex + 11 * ca;
       const ly = ey - 11 * Math.sin(a);
-      ctx.font = `${isH ? 500 : 400} ${Math.round(10.5 * sc)}px "DM Mono",monospace`;
-      ctx.fillStyle = isH ? col : dark ? '#686868' : '#959595';
+      ctx.font = `400 ${Math.round(10.5 * sc)}px "DM Mono",monospace`;
+      ctx.fillStyle = dark ? '#686868' : '#959595';
       ctx.textAlign = ca > 0.22 ? 'left' : ca < -0.22 ? 'right' : 'center';
       ctx.textBaseline = Math.abs(ca) < 0.22 ? 'bottom' : 'middle';
       ctx.fillText(s.name, lx, ly);
@@ -397,9 +398,35 @@
     prog = Math.min((ts - t0) / 1600, 1);
     const time = (ts - t0) / 1000;
 
-    SKILLS.forEach(s => {
+    const W = canvas.clientWidth, H = canvas.clientHeight;
+    const cx = W / 2, cy = H - 2;
+    const sc = Math.min(1, W / 640);
+
+    SKILLS.forEach((s, i) => {
+      // spring restoring force
       s.wvx += (-SPRING_K * s.wx - SPRING_D * s.wvx) * dt;
       s.wvy += (-SPRING_K * s.wy - SPRING_D * s.wvy) * dt;
+
+      // repulsion: proximity to line segment (origin → endpoint)
+      if (mouseX !== null && !reducedMotion) {
+        const a = angle(i);
+        const len = BASE * s.w * sc;
+        const ex = cx + len * Math.cos(a) + s.wx;
+        const ey = cy - len * Math.sin(a) + s.wy;
+        // closest point on segment
+        const ldx = ex - cx, ldy = ey - cy;
+        const len2 = ldx * ldx + ldy * ldy;
+        let t = len2 > 0 ? ((mouseX - cx) * ldx + (mouseY - cy) * ldy) / len2 : 0;
+        t = Math.max(0, Math.min(1, t));
+        const dist = Math.hypot(mouseX - (cx + t * ldx), mouseY - (cy + t * ldy));
+        if (dist < REPEL_RADIUS && dist > 1) {
+          const pushDist = Math.hypot(ex - mouseX, ey - mouseY) || 1;
+          const falloff = (1 - dist / REPEL_RADIUS) ** 2;
+          s.wvx += ((ex - mouseX) / pushDist) * REPEL_ACCEL * falloff * dt;
+          s.wvy += ((ey - mouseY) / pushDist) * REPEL_ACCEL * falloff * dt;
+        }
+      }
+
       s.wx += s.wvx * dt;
       s.wy += s.wvy * dt;
     });
@@ -410,28 +437,10 @@
 
   canvas.addEventListener('mousemove', e => {
     const r = canvas.getBoundingClientRect();
-    const mx = e.clientX - r.left, my = e.clientY - r.top;
-    const cx = r.width / 2, cy = r.height - 2;
-    const sc = Math.min(1, r.width / 640);
-    let found = -1;
-    SKILLS.forEach((s, i) => {
-      const a = angle(i);
-      const len = BASE * s.w * sc;
-      if (Math.hypot(mx - (cx + len * Math.cos(a)), my - (cy - len * Math.sin(a))) < 16) found = i;
-    });
-    if (found !== hov) {
-      if (found >= 0 && !reducedMotion) {
-        const s = SKILLS[found];
-        const a = angle(found);
-        const side = Math.random() < 0.5 ? 1 : -1;
-        s.wvx += Math.sin(a) * IMPULSE * side;
-        s.wvy += Math.cos(a) * IMPULSE * side;
-      }
-      hov = found;
-      canvas.style.cursor = found >= 0 ? 'pointer' : 'default';
-    }
+    mouseX = e.clientX - r.left;
+    mouseY = e.clientY - r.top;
   });
-  canvas.addEventListener('mouseleave', () => { hov = -1; canvas.style.cursor = 'default'; });
+  canvas.addEventListener('mouseleave', () => { mouseX = null; mouseY = null; });
 
   setup();
 
